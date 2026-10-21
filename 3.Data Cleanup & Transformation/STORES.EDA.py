@@ -180,7 +180,7 @@ merged_df = merged_df.dropna(subset=["customer_id"])
 
 
 #Fill missing competitor_open_date with "No competitor" (means the store has no competitor)
-merged_df["competitor_open_date"] = merged_df["competitor_open_date"].fillna("No competitor")
+merged_df["competitor_open_date"] = merged_df["competitor_open_date"].fillna("No competitor").astype(str)
 display(merged_df.head(10))
 
 # COMMAND ----------
@@ -281,4 +281,7 @@ display(stockouts)
 # DBTITLE 1,Cell 45
 # Merge stockouts with merged_df, keeping all columns from both
 freshmart = pd.merge(stockouts, merged_df, on="store_id", how="left", suffixes=("_stockout", "_merged"))
-display(freshmart.head())
+display(freshmart)
+
+# COMMAND ----------
+
